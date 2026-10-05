@@ -1,6 +1,6 @@
 // Troque o número da versão quando publicar uma atualização
-const CACHE = 'ascend-v1';
-const ARQUIVOS = ['./', 'index.html', 'manifest.json', 'icone.jpg', 'firebase-config.js'];
+const CACHE = 'ascend-v2';
+const ARQUIVOS = ['./', 'index.html', 'manifest.json', 'icone.jpg', 'firebase-config.js', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ARQUIVOS)));
