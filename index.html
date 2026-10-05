@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="manifest" href="manifest.json">
+<script src="firebase-config.js"></script>
+<meta name="theme-color" content="#05070d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ASCEND">
+<link rel="icon" href="icone.jpg">
+<link rel="apple-touch-icon" href="icone.jpg">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ASCEND</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Manrope:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#05070d;--bg2:#0b1a3a;--gold:#d9ae56;--gold2:#f3d98f;--tx:#e9ecf5;--mut:#8b95b0;--glass:rgba(255,255,255,.06);--bd:rgba(217,174,86,.28);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f4f1e8;--bg2:#dfe6f5;--tx:#101830;--mut:#56607a;--glass:rgba(255,255,255,.65);--bd:rgba(150,110,30,.35);--gold:#9a6f17;--gold2:#b8862a}}
+:root[data-theme="light"]{--bg:#f4f1e8;--bg2:#dfe6f5;--tx:#101830;--mut:#56607a;--glass:rgba(255,255,255,.65);--bd:rgba(150,110,30,.35);--gold:#9a6f17;--gold2:#b8862a}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:radial-gradient(120% 70% at 50% 0,var(--bg2),var(--bg) 70%) fixed;color:var(--tx);font:16px/1.5 Manrope,system-ui,sans-serif;min-height:100vh}
+main{max-width:560px;margin:0 auto;padding:16px 16px 100px}
+h1,h2{font-family:Cinzel,Georgia,serif;margin:0}h2{font-size:17px;margin-bottom:8px}
+.card{background:var(--glass);border:1px solid var(--bd);border-radius:18px;padding:16px;margin-bottom:14px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.top h1{font-size:22px;letter-spacing:.12em;color:var(--gold2)}
+button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer}
+.ic{background:var(--glass);border:1px solid var(--bd);border-radius:50%;width:40px;height:40px}
+.hero{text-align:center}.hero svg{width:100%;height:auto;display:block}
+.title{font-family:Cinzel,serif;font-size:26px;color:var(--gold2)}
+.sub{color:var(--mut);font-size:14px}
+.bar{height:10px;border-radius:9px;background:rgba(127,140,170,.25);overflow:hidden;margin:8px 0 4px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));box-shadow:0 0 10px var(--gold);transition:width .7s}
+.stats{display:flex;gap:10px}.stats div{flex:1;text-align:center}.stats b{display:block;font-size:22px;color:var(--gold2)}.stats span{font-size:13px;color:var(--mut)}
+.attr{display:grid;grid-template-columns:112px 1fr 30px;align-items:center;gap:8px;margin:6px 0;font-size:14px}.attr .bar{margin:0;height:7px}
+.m{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid rgba(127,140,170,.2);padding:11px 2px}
+.m:last-child{border:0}
+.ck{width:26px;height:26px;border-radius:50%;border:2px solid var(--gold);flex:none;display:grid;place-items:center}
+.m.done .ck{background:var(--gold);color:#05070d}.m.done .t{opacity:.55}
+.xp{margin-left:auto;color:var(--gold2);font-size:13px;white-space:nowrap;text-align:right}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.grid button,.chip{background:var(--glass);border:1px solid var(--bd);border-radius:14px;padding:12px 4px;text-align:center}
+.grid button.on{background:var(--gold);color:#05070d}
+input,select,textarea{width:100%;background:var(--glass);border:1px solid var(--bd);border-radius:12px;padding:11px;margin-bottom:8px}
+.btn{background:linear-gradient(90deg,var(--gold),var(--gold2));color:#05070d;border:0;border-radius:12px;padding:12px 18px;font-weight:600}
+.ghost{background:none;border:1px solid var(--bd);border-radius:12px;padding:8px 14px}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-top:8px}
+.cal div{aspect-ratio:1;border-radius:8px;display:grid;place-items:center;font-size:12px;background:rgba(127,140,170,.18);color:var(--mut)}
+.cal .h{background:none;aspect-ratio:auto}.cal .g{background:var(--gold);color:#05070d}.cal .v{background:#2e9d62;color:#fff}.cal .t{outline:2px solid var(--gold2)}
+.cn{display:flex;justify-content:space-between;align-items:center}
+.item{display:flex;gap:8px;justify-content:space-between;border-bottom:1px solid rgba(127,140,170,.2);padding:9px 0}
+.item small{color:var(--mut);display:block}
+.mem{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.mem button{aspect-ratio:1;font-size:26px;background:var(--glass);border:1px solid var(--bd);border-radius:12px}
+.mem button.ok{background:var(--gold)}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:center;padding:8px 12px calc(8px + env(safe-area-inset-bottom,0px));background:linear-gradient(transparent,var(--bg) 40%)}
+nav div{display:flex;width:100%;max-width:560px;background:var(--glass);border:1px solid var(--bd);border-radius:22px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:4px}
+nav button{flex:1;background:none;border:0;border-radius:18px;padding:7px 0;font-size:12px;color:var(--mut)}
+nav button.on{background:rgba(217,174,86,.18);color:var(--gold2)}nav span{display:block;font-size:19px}
+.thb{background:none;border:0;padding:0;flex:none;cursor:zoom-in}.thb img{width:56px;display:block;border-radius:10px;border:1px solid var(--bd)}
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.88);display:grid;place-items:center;z-index:20;padding:16px;cursor:zoom-out}.lb img{max-width:min(92vw,460px);max-height:88vh;border-radius:14px}
+.toast{position:fixed;left:50%;top:calc(16px + env(safe-area-inset-top,0px));transform:translate(-50%,-90px);background:var(--gold);color:#05070d;padding:10px 18px;border-radius:30px;font-weight:600;transition:.4s;z-index:9;text-align:center}
+.toast.show{transform:translate(-50%,0)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+:focus-visible{outline:2px solid var(--gold2);outline-offset:2px}
+</style>
+</head>
+<body>
+<main>
+<div class="top"><h1 style="display:flex;align-items:center;gap:10px"><svg width="38" height="38" viewBox="0 0 100 100" aria-hidden="true"><rect x="2" y="2" width="96" height="96" rx="22" fill="#05070d" stroke="#d9ae56" stroke-width="3"/><polyline points="20,78 50,20 80,78" fill="none" stroke="#d9ae56" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><polyline points="36,66 50,50 64,66" fill="none" stroke="#f3d98f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>ASCEND</h1><button class="ic" data-a="theme" aria-label="Alternar tema">◐</button></div>
+<div id="v"></div>
+</main>
+<nav><div id="nav"></div></nav>
+<div class="toast" id="toast"></div>
+<div id="lb"></div>
+<script>
+const $=id=>document.getElementById(id);
+const pad=n=>String(n).padStart(2,'0');
+const dk=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const TODAY=dk(new Date());
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const MESES=['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+const ATTR={sab:'📖 Sabedoria',int:'🧠 Inteligência',for:'💪 Força',dis:'🔥 Disciplina',car:'❤️ Caráter'};
+const HABS=[['bib','📖','Ler a Bíblia',20,'sab'],['est','🧠','Estudar 25 min',25,'int'],['agu','💧','Beber água',10,'dis'],['med','🧘','Meditar',10,'dis'],['idi','🌎','Aprender idiomas',15,'int'],['ali','🥗','Melhorar alimentação',10,'for'],['son','😴','Dormir melhor',10,'dis'],['gra','🙏','Gratidão do dia',15,'car']];
+const TR={basico:['Básico',30],medio:['Médio',50],pesado:['Pesado',80]};
+const LISTS={reads:['📖 Leitura da Bíblia','Livro e capítulo (ex.: João 3)',0,20,'sab'],verses:['⭐ Versículos favoritos','Escreva o versículo e a referência',0,5,'sab'],prayers:['🙏 Pedidos de oração','Pelo que você quer orar?',0,5,'car'],grat:['💛 Gratidão','Sou grato por...',0,15,'car'],diary:['📓 Diário espiritual','Reflexão do dia',0,15,'car'],lib:['📚 Biblioteca de conhecimento','Frase, resumo ou ideia',['Versículo','Frase','Resumo de livro','Ideia','Aprendizado'],10,'int'],palace:['🏛️ Palácio da Memória','O que memorizar neste lugar?',['Quarto','Sala','Cozinha','Rua','Igreja'],10,'int'],goals:['🎯 Objetivos e reflexões','Objetivo ou pensamento',0,0,'dis']};
+const BAD=['Redes sociais em excesso','Açúcar e besteiras','Procrastinação'];
+const ACH=[['🌱 Primeiro passo','Ganhar XP',()=>S.xp>0],['🔥 Sequência de 7','7 dias seguidos',()=>streak()>=7],['⭐ Nível 5','Chegar ao nível 5',()=>level().n>=5],['⚔️ Guerreiro','10 treinos',()=>cnt('train')>=10],['🏔️ Constante','30 dias ativos',()=>cnt('xp')>=30],['🐉 Vencedor','Derrotar um mau hábito',()=>S.beat>0]];
+const IMG=['data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MjAgNzYwIj48cmVjdCB3aWR0aD0iNDIwIiBoZWlnaHQ9Ijc2MCIgZmlsbD0iIzA1MDcwZCIvPjxyZWN0IHk9IjAiIHdpZHRoPSI0MjAiIGhlaWdodD0iMzAwIiBmaWxsPSIjMGIxYTNhIi8+PHBvbHlnb24gcG9pbnRzPSIwLDMwMCAxMjAsMTkwIDE4MCwyNTAgMjcwLDEyMCA0MjAsMzAwIiBmaWxsPSIjZDlhZTU2IiBmaWxsLW9wYWNpdHk9Ii4yMiIvPjxyZWN0IHg9IjE3MCIgeT0iNzAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgcng9IjE4IiBmaWxsPSIjMDUwNzBkIiBzdHJva2U9IiNkOWFlNTYiIHN0cm9rZS13aWR0aD0iMyIvPjxwb2x5bGluZSBwb2ludHM9IjE4NywxMzIgMjEwLDg4IDIzMywxMzIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2Q5YWU1NiIgc3Ryb2tlLXdpZHRoPSI2IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48cG9seWxpbmUgcG9pbnRzPSIxOTksMTIzIDIxMCwxMTEgMjIxLDEyMyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZjNkOThmIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjx0ZXh0IHg9IjIxMCIgeT0iMzYwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iR2VvcmdpYSxzZXJpZiIgZm9udC1zaXplPSI4NCIgZmlsbD0iI2YzZDk4ZiI+Rm9jbzwvdGV4dD48bGluZSB4MT0iMTUwIiB5MT0iMzkwIiB4Mj0iMjcwIiB5Mj0iMzkwIiBzdHJva2U9IiNkOWFlNTYiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjIxMCIgeT0iNDMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iR2VvcmdpYSxzZXJpZiIgZm9udC1zaXplPSIzMCIgZmlsbD0iI2U5ZWNmNSI+TWVub3MgZGlzdHJhw6fDo28uPC90ZXh0Pjx0ZXh0IHg9IjIxMCIgeT0iNDc2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iR2VvcmdpYSxzZXJpZiIgZm9udC1zaXplPSIzMCIgZmlsbD0iI2U5ZWNmNSI+TWFpcyBkaXJlw6fDo28uPC90ZXh0Pjx0ZXh0IHg9IjIxMCIgeT0iNjkwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iR2VvcmdpYSxzZXJpZiIgZm9udC1zaXplPSIyMCIgbGV0dGVyLXNwYWNpbmc9IjYiIGZpbGw9IiNkOWFlNTYiPkFTQ0VORDwvdGV4dD48L3N2Zz4=', 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MjAgNzYwIj48cmVjdCB3aWR0aD0iNDIwIiBoZWlnaHQ9Ijc2MCIgZmlsbD0iIzA1MDcwZCIvPjxyZWN0IHk9IjAiIHdpZHRoPSI0MjAiIGhlaWdodD0iMzAwIiBmaWxsPSIjMGIxYTNhIi8+PHBvbHlnb24gcG9pbnRzPSIwLDMwMCAxMjAsMTkwIDE4MCwyNTAgMjcwLDEyMCA0MjAsMzAwIiBmaWxsPSIjZDlhZTU2IiBmaWxsLW9wYWNpdHk9Ii4yMiIvPjxyZWN0IHg9IjE3MCIgeT0iNzAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgcng9IjE4IiBmaWxsPSIjMDUwNzBkIiBzdHJva2U9IiNkOWFlNTYiIHN0cm9rZS13aWR0aD0iMyIvPjxwb2x5bGluZSBwb2ludHM9IjE4NywxMzIgMjEwLDg4IDIzMywxMzIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2Q5YWU1NiIgc3Ryb2tlLXdpZHRoPSI2IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48cG9seWxpbmUgcG9pbnRzPSIxOTksMTIzIDIxMCwxMTEgMjIxLDEyMyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZjNkOThmIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjx0ZXh0IHg9IjIxMCIgeT0iMzUyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iR2VvcmdpYSxzZXJpZiIgZm9udC1zaXplPSI1OCIgZmlsbD0iI2YzZDk4ZiI+VG9kbyBkaWE8L3RleHQ+PGxpbmUgeDE9IjE1MCIgeTE9IjM5MCIgeDI9IjI3MCIgeTI9IjM5MCIgc3Ryb2tlPSIjZDlhZTU2IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIyMTAiIHk9IjQzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsc2VyaWYiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNlOWVjZjUiPlVtIHBhc3NvIGRlIGNhZGEgdmV6LjwvdGV4dD48dGV4dCB4PSIyMTAiIHk9IjQ3NiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsc2VyaWYiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiNlOWVjZjUiPlNlbSBwdWxhciBuZW5odW0uPC90ZXh0Pjx0ZXh0IHg9IjIxMCIgeT0iNjkwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iR2VvcmdpYSxzZXJpZiIgZm9udC1zaXplPSIyMCIgbGV0dGVyLXNwYWNpbmc9IjYiIGZpbGw9IiNkOWFlNTYiPkFTQ0VORDwvdGV4dD48L3N2Zz4='];
+let Z=null;
+function TH(i){return '<button class="thb" data-a="zoom" data-v="'+i+'" aria-label="Ampliar imagem"><img src="'+IMG[i]+'" alt=""></button>'}
+const fresh=()=>({xp:0,at:{sab:0,int:0,for:0,dis:0,car:0},log:{},lists:{},bad:{},beat:0,w:[],goal:'',name:'Peregrino',av:'🦅',start:TODAY,ach:[]});
+const FB_CONFIG=(window.FB_CONFIG&&window.FB_CONFIG.apiKey&&!/COLE_AQUI/.test(window.FB_CONFIG.apiKey))?window.FB_CONFIG:null;
+let S=fresh(),U=null,FB=null,DB=null,CLOUD=false;
+const key=()=>'ascend2_'+(U?U.uid:'x');
+const save=()=>{if(!U)return;try{localStorage.setItem(key(),JSON.stringify(S))}catch(e){}if(DB&&CLOUD){clearTimeout(save.t);save.t=setTimeout(()=>DB.collection('users').doc(U.uid).set(JSON.parse(JSON.stringify(S))).catch(()=>{}),800)}};
+const MSG={'auth/invalid-credential':'E-mail ou senha incorretos','auth/wrong-password':'E-mail ou senha incorretos','auth/user-not-found':'E-mail ou senha incorretos','auth/email-already-in-use':'Este e-mail já tem conta','auth/weak-password':'Senha muito fraca. Use 6 ou mais caracteres','auth/invalid-email':'E-mail inválido','auth/network-request-failed':'Sem conexão com a internet','auth/too-many-requests':'Muitas tentativas. Aguarde um pouco','auth/popup-closed-by-user':'Login com Google cancelado'};
+const err=m=>{const e=$('lerr');if(e)e.textContent=m};
+async function sha(s){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}
+const accs=()=>{try{return JSON.parse(localStorage.getItem('ascend_acc')||'{}')}catch(e){return{}}};
+async function enter(u){U=u;let s=null;try{s=JSON.parse(localStorage.getItem(key())||'null')}catch(e){}CLOUD=!DB;if(DB){try{const r=await DB.collection('users').doc(u.uid).get();if(r.exists)s=r.data();CLOUD=true}catch(e){toast('Sem conexão com a nuvem. Entre de novo com internet para sincronizar')}}S=Object.assign(fresh(),s||{});if(u.name&&S.name==='Peregrino')S.name=u.name;save();tab='home';sub=null;render()}
+function loginHtml(){const up=lm==='up';return '<div class="card" style="margin-top:24px;text-align:center"><h2 style="font-size:24px;margin:4px 0">'+(up?'Criar conta':'Entrar')+'</h2><p class="sub">'+(up?'Comece sua jornada de evolução.':'Continue sua subida.')+'</p>'+(up?'<input id="ln" placeholder="Seu nome" autocomplete="name">':'')+'<input id="le" type="email" placeholder="E-mail" autocomplete="email"><input id="lp" type="password" placeholder="Senha" autocomplete="'+(up?'new-password':'current-password')+'"><div id="lerr" class="sub" style="color:#e57373;min-height:24px" role="alert"></div><button class="btn" style="width:100%" data-a="login">'+(up?'Criar conta':'Entrar')+'</button>'+(FB?'<button class="ghost" style="width:100%;margin-top:10px" data-a="google">Entrar com Google</button>':'')+(up?'':'<p style="margin:10px 0 0"><button class="ghost" style="border:0" data-a="forgot">Esqueci a senha</button></p>')+'<p class="sub">'+(up?'Já tem conta?':'Novo por aqui?')+' <button class="ghost" style="border:0;color:var(--gold2)" data-a="lmode">'+(up?'Entrar':'Criar conta')+'</button></p>'+(FB?'':'<p class="sub" style="font-size:12px">Modo de teste: a conta fica salva só neste aparelho. Conecte o Firebase para salvar na nuvem.</p>')+'</div>'}
+let lm='in',tab='home',sub=null,sel=null,filt='',cm=new Date();cm.setDate(1);
+let P={left:1500,run:false,id:null},G=null;
+let LAST=null;
+function undo(l,r){if(!r)return;S.xp=Math.max(0,S.xp-r.g);l.xp=Math.max(0,l.xp-r.g);S.at[r.a]=Math.max(0,S.at[r.a]-r.pt)}
+const need=n=>Math.round(100*Math.pow(n,1.5));
+function level(){let n=1,x=S.xp;while(x>=need(n)){x-=need(n);n++}return{n,x,max:need(n)}}
+const rank=()=>{const n=level().n;return n>=50?'Mestre da Evolução':n>=25?'Guerreiro da Disciplina':n>=10?'Discípulo':'Iniciante'};
+const L0=()=>S.log[TODAY]||(S.log[TODAY]={done:[],xp:0,train:null,lx:[]});
+function cnt(k){return Object.values(S.log).filter(l=>k==='xp'?l.xp:l.train).length}
+function streak(){let c=0,d=new Date();if(!(S.log[dk(d)]||{}).xp)d.setDate(d.getDate()-1);while((S.log[dk(d)]||{}).xp){c++;d.setDate(d.getDate()-1)}return c}
+function hs(id){let c=0,d=new Date();const ok=x=>((S.log[dk(x)]||{}).done||[]).includes(id);if(!ok(d))d.setDate(d.getDate()-1);while(ok(d)){c++;d.setDate(d.getDate()-1)}return c}
+function toast(m){const t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('show'),2000)}
+function gain(xp,a,msg){
+ if(!xp){render();return}
+ const b=level().n,l=L0(),bonus=Math.min(.5,Math.floor(streak()/7)*.05),g=Math.round(xp*(1+bonus));
+ const pt=Math.max(1,Math.round(xp/5));LAST={g,a,pt};S.xp+=g;l.xp+=g;S.at[a]+=pt;
+ let m='+'+g+' XP · '+msg;if(level().n>b)m='Nível '+level().n+' alcançado!';
+ ACH.forEach(x=>{if(!S.ach.includes(x[0])&&x[2]()){S.ach.push(x[0]);m='Conquista: '+x[0]}});
+ save();toast(m);render()}
+function calHtml(mode){
+ const y=cm.getFullYear(),m=cm.getMonth(),first=new Date(y,m,1).getDay(),n=new Date(y,m+1,0).getDate();
+ let h='',act=0;['D','S','T','Q','Q','S','S'].forEach(x=>h+='<div class="h">'+x+'</div>');
+ for(let i=0;i<first;i++)h+='<div class="h"></div>';
+ for(let d=1;d<=n;d++){const k=y+'-'+pad(m+1)+'-'+pad(d),l=S.log[k]||{},ok=mode==='train'?l.train:l.xp;if(ok)act++;h+='<div class="'+(ok?(mode==='train'?'v':'g'):'')+(k===TODAY?' t':'')+'">'+d+'</div>'}
+ return '<div class="cn"><button class="ghost" data-a="cm" data-v="-1" aria-label="Mês anterior">‹</button><b>'+MESES[m]+' '+y+'</b><button class="ghost" data-a="cm" data-v="1" aria-label="Próximo mês">›</button></div><div class="cal">'+h+'</div><p class="sub">'+act+' de '+n+' dias com progresso</p>'}
+function rows(list){const dn=L0().done;return list.map(h=>'<button class="m '+(dn.includes(h[0])?'done':'')+'" data-a="hab" data-id="'+h[0]+'"><span class="ck">'+(dn.includes(h[0])?'✓':'')+'</span><span class="t">'+h[1]+' '+h[2]+'<small class="sub" style="display:block">🔥 '+hs(h[0])+' dias seguidos</small></span><span class="xp">+'+h[3]+' XP</span></button>').join('')}
+function hero(){const L=level();return '<div class="card hero"><div style="font-size:34px">'+S.av+'</div><svg viewBox="0 0 400 170" aria-hidden="true"><path d="M0 170 L90 80 L140 115 L230 15 L310 100 L350 70 L400 170Z" fill="rgba(217,174,86,.3)" stroke="#d9ae56" stroke-opacity=".5"/><path id="trail" d="M30 165 Q90 110 140 115 T230 15" fill="none" stroke="#f3d98f" stroke-width="2" stroke-dasharray="4 5"/><circle id="dot" r="7" fill="#f3d98f"/></svg><div class="title">'+rank()+'</div><div class="sub">'+esc(S.name)+' · Nível '+L.n+'</div><div class="bar"><i style="width:'+L.x/L.max*100+'%"></i></div><div class="sub">'+L.x+' / '+L.max+' XP</div></div>'}
+function listPage(k){const c=LISTS[k];return '<div class="card"><h2>'+c[0]+'</h2>'+(c[2]?'<select id="lc">'+c[2].map(x=>'<option>'+x+'</option>').join('')+'</select>':'')+'<textarea id="lt" rows="2" placeholder="'+c[1]+'"></textarea><button class="btn" data-a="ladd" data-k="'+k+'">Salvar'+(c[3]?' (+'+c[3]+' XP)':'')+'</button></div><div class="card">'+(k==='lib'?'<input id="lq" placeholder="Pesquisar" value="'+esc(filt)+'">':'')+'<div id="items">'+items(k)+'</div></div>'}
+function items(k){const a=(S.lists[k]||[]).map((x,i)=>[x,i]).filter(([x])=>!filt||(x.t+x.c).toLowerCase().includes(filt.toLowerCase()));return a.length?a.reverse().map(([x,i])=>'<div class="item"><div>'+esc(x.t)+'<small>'+(x.c?esc(x.c)+' · ':'')+x.d+'</small></div><button class="ghost" data-a="ldel" data-k="'+k+'" data-i="'+i+'" aria-label="Apagar">×</button></div>').join(''):'<p class="sub">Nada salvo ainda.</p>'}
+function chart(){const w=S.w;if(w.length<2)return '<p class="sub">Registre 2 ou mais pesos para ver o gráfico.</p>';const v=w.map(x=>x.v),mn=Math.min(...v),mx=Math.max(...v)||1,r=(mx-mn)||1;return '<svg viewBox="0 0 300 100" style="width:100%"><polyline fill="none" stroke="#f3d98f" stroke-width="2" points="'+w.map((x,i)=>(i*300/(w.length-1))+','+(90-(x.v-mn)/r*80)).join(' ')+'"/></svg>'}
+function mentor(){const k=Object.keys(S.at).sort((a,b)=>S.at[a]-S.at[b])[0],t=[],s=streak(),a7=[...Array(7)].filter((_,i)=>{const d=new Date();d.setDate(d.getDate()-i);return (S.log[dk(d)]||{}).xp}).length;
+ t.push(a7>=5?'Você esteve ativo em '+a7+' dos últimos 7 dias. Constância forte.':'Você esteve ativo em '+a7+' dos últimos 7 dias. Tente um mínimo diário: uma missão pequena já mantém a sequência.');
+ t.push('Sua sequência é de '+s+' dia(s). '+(s<7?'Chegar a 7 libera bônus de XP.':'O bônus de sequência já está ativo.'));
+ t.push('Seu atributo mais fraco é '+ATTR[k]+'. Priorize uma ação dele amanhã.');
+ t.push(cnt('train')<3?'Poucos treinos registrados. Comece com o básico, 3 vezes por semana.':'Bom ritmo de treinos. Aumente a intensidade aos poucos.');
+ return t.map(x=>'<p>'+x+'</p>').join('')}
+const MORE=[['reads','📖','Bíblia'],['verses','⭐','Versículos'],['prayers','🙏','Orações'],['grat','💛','Gratidão'],['diary','📓','Diário'],['lib','📚','Biblioteca'],['palace','🏛️','Palácio da Memória'],['goals','🎯','Objetivos'],['c365','📅','Desafio 365'],['trans','📸','Transformação'],['mentor','🤖','Mentor IA'],['ach','🏆','Conquistas'],['perfil','👤','Perfil']];
+function view(){
+ if(sub&&LISTS[sub])return '<button class="ghost" data-a="back" style="margin-bottom:12px">‹ Voltar</button>'+listPage(sub);
+ if(sub==='c365'){const dn=Math.floor((new Date(TODAY)-new Date(S.start))/864e5)+1,y=new Date().getFullYear();let b='';for(let m=0;m<12;m++){const n=new Date(y,m+1,0).getDate();let a=0;for(let d=1;d<=n;d++)if((S.log[y+'-'+pad(m+1)+'-'+pad(d)]||{}).xp)a++;b+='<div class="attr" style="grid-template-columns:92px 1fr 30px"><span>'+MESES[m]+'</span><div class="bar"><i style="width:'+a/n*100+'%"></i></div><b>'+a+'</b></div>'}return '<button class="ghost" data-a="back" style="margin-bottom:12px">‹ Voltar</button><div class="card stats"><div><b>'+dn+'</b><span>dia da jornada</span></div><div><b>'+cnt('xp')+'</b><span>dias concluídos</span></div><div><b>'+streak()+'</b><span>sequência</span></div></div><div class="card"><h2>📅 Evolução em '+y+'</h2>'+b+'</div><div class="card"><h2>Calendário</h2>'+calHtml('xp')+'</div>'}
+ if(sub==='trans')return '<button class="ghost" data-a="back" style="margin-bottom:12px">‹ Voltar</button><div class="card"><h2>📸 Minha Transformação</h2><input id="wk" type="number" step="0.1" placeholder="Peso hoje (kg)"><button class="btn" data-a="wadd">Registrar peso</button>'+chart()+'<p class="sub">'+S.w.slice(-5).reverse().map(x=>x.d+': '+x.v+' kg').join('<br>')+'</p></div><div class="card"><h2>Meta física</h2><input id="gl" placeholder="Ex.: chegar a 75 kg" value="'+esc(S.goal)+'"><button class="btn" data-a="gsave">Salvar meta</button><p class="sub">Fotos de antes e depois chegam com o login e o banco de dados.</p></div>';
+ if(sub==='mentor')return '<button class="ghost" data-a="back" style="margin-bottom:12px">‹ Voltar</button><div class="card"><h2>🤖 Mentor ASCEND</h2>'+mentor()+'</div>';
+ if(sub==='ach')return '<button class="ghost" data-a="back" style="margin-bottom:12px">‹ Voltar</button><div class="card"><h2>🏆 Conquistas</h2>'+ACH.map(x=>'<div class="item"><div>'+x[0]+'<small>'+x[1]+'</small></div><b>'+(S.ach.includes(x[0])?'✓':'🔒')+'</b></div>').join('')+'</div>';
+ if(sub==='perfil')return '<button class="ghost" data-a="back" style="margin-bottom:12px">‹ Voltar</button><div class="card"><h2>👤 Perfil</h2><input id="pn" value="'+esc(S.name)+'"><div class="grid" style="margin-bottom:10px">'+['🦅','🦁','🐺','⚔️','👑','🔥'].map(a=>'<button class="'+(S.av===a?'on':'')+'" data-a="av" data-v="'+a+'">'+a+'</button>').join('')+'</div><button class="btn" data-a="psave">Salvar perfil</button> <button class="ghost" data-a="reset">Zerar progresso</button></div><div class="card"><p class="sub">Conta: '+esc(U.email)+'</p><button class="ghost" data-a="sair">Sair da conta</button></div>';
+ const L=level();
+ if(tab==='home')return hero()+'<div class="card stats"><div><b>'+streak()+'</b><span>sequência</span></div><div><b>'+cnt('xp')+'</b><span>dias de evolução</span></div><div><b>'+L0().xp+'</b><span>XP hoje</span></div></div><div class="card"><h2>Atributos</h2>'+Object.keys(ATTR).map(k=>'<div class="attr"><span>'+ATTR[k]+'</span><div class="bar"><i style="width:'+Math.min(100,S.at[k])+'%"></i></div><b>'+S.at[k]+'</b></div>').join('')+'</div><div class="card"><h2>Missões do dia</h2>'+rows(HABS.slice(0,5))+'</div><div class="card"><h2>Calendário de progresso</h2>'+calHtml('xp')+'</div>';
+ if(tab==='habits'){const bad=BAD.map(n=>{const b=S.bad[n]||(S.bad[n]={hp:7,last:''});return '<div class="item"><div>🐉 '+n+'<div class="bar" style="width:150px"><i style="width:'+b.hp/7*100+'%"></i></div><small>Vida do inimigo: '+b.hp+'/7</small></div><button class="btn" data-a="hit" data-n="'+n+'" '+(b.last===TODAY?'disabled style="opacity:.5"':'')+'>Resisti</button></div>'}).join('');return '<div class="card"><h2>🔥 Hábitos de hoje</h2>'+rows(HABS)+'</div><div class="card"><div class="cn"><h2>⚔️ Batalha contra maus hábitos</h2>'+TH(1)+'</div><p class="sub">Resista por 7 dias para derrotar cada inimigo (+100 XP).</p>'+bad+'</div><div class="card"><h2>Histórico</h2>'+calHtml('xp')+'</div>'}
+ if(tab==='train'){const t=L0().train;return '<div class="card"><h2>🥋 Treino de hoje</h2><div class="grid">'+Object.keys(TR).map(k=>'<button data-a="tsel" data-k="'+k+'" class="'+(sel===k||t===k?'on':'')+'">'+TR[k][0]+'<br><small>+'+TR[k][1]+' XP</small></button>').join('')+'</div><br><button class="btn" data-a="tdone">'+(t?'Concluído ✓ · toque para desmarcar':'Concluir treino')+'</button></div><div class="card"><h2>Calendário de treinos</h2>'+calHtml('train')+'<p class="sub">'+cnt('train')+' treinos no total</p></div>'}
+ if(tab==='mind'){if(!G)newGame();const m=Math.floor(P.left/60),s=P.left%60;return '<div class="card"><div class="cn"><h2>⏱️ Sala de Foco</h2>'+TH(0)+'</div><div class="title" id="pt" style="text-align:center">'+pad(m)+':'+pad(s)+'</div><div class="grid"><button data-a="pstart">'+(P.run?'Pausar':'Iniciar')+'</button><button data-a="preset" data-v="1500">25 min</button><button data-a="preset" data-v="300">5 min</button></div><p class="sub">Concluir um ciclo dá +15 XP.</p></div><div class="card"><h2>🧠 Jogo da memória</h2><p class="sub">Jogadas: '+G.moves+'</p><div class="mem">'+G.c.map((e,i)=>'<button data-a="mg" data-i="'+i+'" class="'+(G.m.includes(i)?'ok':'')+'">'+(G.m.includes(i)||G.o.includes(i)?e:'?')+'</button>').join('')+'</div><br><button class="ghost" data-a="mnew">Novo jogo</button></div><div class="card"><h2>Mais treino mental</h2><div class="grid"><button data-a="sub" data-v="palace">🏛️ Palácio</button><button data-a="sub" data-v="goals">🎯 Objetivos</button></div></div>'}
+ return '<div class="card"><h2>Mais áreas</h2><div class="grid">'+MORE.map(x=>'<button data-a="sub" data-v="'+x[0]+'">'+x[1]+'<br><small>'+x[2]+'</small></button>').join('')+'</div></div>'}
+function newGame(){const e=['📖','🙏','💪','🧠','🔥','⭐','🏔️','👑'];G={c:[...e,...e].sort(()=>Math.random()-.5),o:[],m:[],moves:0}}
+function render(){
+ document.querySelector('nav').style.display=U?'':'none';if(!U){$('v').innerHTML=loginHtml();return}
+ $('v').innerHTML=view();
+ $('nav').innerHTML=[['home','🏔️','Início'],['habits','🔥','Hábitos'],['train','💪','Treino'],['mind','🧠','Mente'],['more','✦','Mais']].map(t=>'<button data-a="tab" data-v="'+t[0]+'" class="'+(tab===t[0]&&!(sub&&t[0]!=='more'&&false)?'on':'')+'"><span>'+t[1]+'</span>'+t[2]+'</button>').join('');
+ $('lb').innerHTML=Z===null?'':'<div class="lb" data-a="unzoom"><img src="'+IMG[Z]+'" alt="Imagem ampliada"></div>';
+ const p=$('trail');if(p){const L=level(),pt=p.getPointAtLength(p.getTotalLength()*Math.min(1,(L.n-1+L.x/L.max)/50));$('dot').setAttribute('cx',pt.x);$('dot').setAttribute('cy',pt.y)}}
+const A={
+ lmode(){lm=lm==='in'?'up':'in';render()},
+ async login(){const em=$('le').value.trim().toLowerCase(),pw=$('lp').value,nm=$('ln')?$('ln').value.trim():'';err('');
+  if(!em||!pw)return err('Preencha e-mail e senha');if(lm==='up'&&pw.length<6)return err('A senha precisa ter 6 ou mais caracteres');
+  try{if(FB){const a=FB.auth();if(lm==='up'){const c=await a.createUserWithEmailAndPassword(em,pw);if(nm){await c.user.updateProfile({displayName:nm});if(U){S.name=nm;save();render()}}}else await a.signInWithEmailAndPassword(em,pw)}
+  else{const ac=accs(),hs=await sha(em+pw);if(lm==='up'){if(ac[em])return err('Este e-mail já tem conta');ac[em]={uid:'l'+Date.now(),name:nm,h:hs};localStorage.setItem('ascend_acc',JSON.stringify(ac))}else if(!ac[em]||ac[em].h!==hs)return err('E-mail ou senha incorretos');localStorage.setItem('ascend_sess',em);enter({uid:ac[em].uid,email:em,name:ac[em].name})}}
+  catch(e){err(MSG[e.code]||'Não foi possível entrar. Tente de novo')}},
+ async google(){try{await FB.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())}catch(e){err(MSG[e.code]||'Não foi possível entrar com Google')}},
+ async forgot(){const em=$('le').value.trim();if(!FB)return err('Recuperar senha funciona só com o Firebase conectado');if(!em)return err('Digite seu e-mail acima');try{await FB.auth().sendPasswordResetEmail(em);err('');toast('Enviamos um e-mail para redefinir a senha')}catch(e){err(MSG[e.code]||'Não foi possível enviar o e-mail')}},
+ sair(){if(FB)FB.auth().signOut();localStorage.removeItem('ascend_sess');U=null;lm='in';render()},
+ zoom(e){Z=+e.dataset.v;render()},
+ unzoom(){Z=null;render()},
+ theme(){const r=document.documentElement;r.dataset.theme=(r.dataset.theme||(matchMedia('(prefers-color-scheme:light)').matches?'light':'dark'))==='light'?'dark':'light'},
+ tab(e){tab=e.dataset.v;sub=null;render();scrollTo(0,0)},
+ sub(e){sub=e.dataset.v;filt='';render();scrollTo(0,0)},
+ back(){sub=null;filt='';render()},
+ cm(e){cm.setMonth(cm.getMonth()+ +e.dataset.v);render()},
+ hab(e){const h=HABS.find(x=>x[0]===e.dataset.id),l=L0();l.hx=l.hx||{};if(l.done.includes(h[0])){undo(l,l.hx[h[0]]);l.done=l.done.filter(x=>x!==h[0]);delete l.hx[h[0]];save();toast('Desmarcado · XP removido');render();return}l.done.push(h[0]);gain(h[3],h[4],h[2]);l.hx[h[0]]=LAST;save()},
+ tsel(e){sel=e.dataset.k;render()},
+ tdone(){const l=L0();if(l.train){undo(l,l.tx);l.train=null;l.tx=null;sel=null;save();toast('Treino desmarcado · XP removido');render();return}if(!sel)return toast('Escolha a intensidade');l.train=sel;gain(TR[sel][1],'for','Treino '+TR[sel][0].toLowerCase());l.tx=LAST;save()},
+ hit(e){const b=S.bad[e.dataset.n];if(b.last===TODAY)return;b.last=TODAY;b.hp--;if(b.hp<=0){b.hp=7;S.beat++;gain(100,'dis','Inimigo derrotado!')}else gain(10,'dis','Resistiu hoje')},
+ ladd(e){const k=e.dataset.k,t=$('lt').value.trim();if(!t)return toast('Escreva algo antes de salvar');(S.lists[k]=S.lists[k]||[]).push({t,c:$('lc')?$('lc').value:'',d:TODAY.split('-').reverse().join('/')});const l=L0();l.lx=l.lx||[];const c=LISTS[k];if(c[3]&&!l.lx.includes(k)){l.lx.push(k);gain(c[3],c[4],c[0].slice(3))}else{save();render();toast('Salvo')}},
+ ldel(e){S.lists[e.dataset.k].splice(+e.dataset.i,1);save();render()},
+ wadd(){const v=parseFloat($('wk').value);if(!v)return toast('Digite o peso');S.w.push({d:TODAY.split('-').reverse().join('/'),v});save();render()},
+ gsave(){S.goal=$('gl').value;save();toast('Meta salva')},
+ av(e){S.av=e.dataset.v;save();render()},
+ psave(){S.name=$('pn').value.trim()||'Peregrino';save();toast('Perfil salvo');render()},
+ reset(){if(confirm('Apagar todo o progresso?')){S=fresh();save();render()}},
+ preset(e){clearInterval(P.id);P={left:+e.dataset.v,run:false,id:null};render()},
+ pstart(){if(P.run){clearInterval(P.id);P.run=false;return render()}P.run=true;P.id=setInterval(()=>{P.left--;if(P.left<=0){clearInterval(P.id);P={left:1500,run:false,id:null};gain(15,'dis','Foco concluído')}else if($('pt'))$('pt').textContent=pad(Math.floor(P.left/60))+':'+pad(P.left%60)},1000);render()},
+ mnew(){newGame();render()},
+ mg(e){const i=+e.dataset.i;if(G.o.length>=2||G.o.includes(i)||G.m.includes(i))return;G.o.push(i);render();if(G.o.length===2){G.moves++;const[a,b]=G.o;if(G.c[a]===G.c[b]){G.m.push(a,b);G.o=[];if(G.m.length===16)gain(20,'int','Memória treinada');else render()}else setTimeout(()=>{G.o=[];render()},700)}}
+};
+document.addEventListener('click',ev=>{const e=ev.target.closest('[data-a]');if(e&&A[e.dataset.a])A[e.dataset.a](e)});
+document.addEventListener('keydown',ev=>{if(ev.key==='Escape'&&Z!==null){Z=null;render()}});
+document.addEventListener('input',ev=>{if(ev.target.id==='lq'){filt=ev.target.value;$('items').innerHTML=items('lib')}});
+document.addEventListener('keydown',ev=>{if(ev.key==='Enter'&&!U&&ev.target.tagName==='INPUT')A.login()});
+function local(){const em=localStorage.getItem('ascend_sess'),a=accs()[em];if(a)enter({uid:a.uid,email:em,name:a.name});else render()}
+function loadFB(ok,fail){const u=['app','auth','firestore'].map(n=>'https://cdn.jsdelivr.net/npm/firebase@10.12.2/firebase-'+n+'-compat.js');let i=0;const nx=()=>{if(i===u.length)return ok();const s=document.createElement('script');s.src=u[i++];s.onload=nx;s.onerror=fail;document.head.appendChild(s)};nx()}
+render();
+if(FB_CONFIG)loadFB(()=>{firebase.initializeApp(FB_CONFIG);FB=firebase;DB=firebase.firestore();firebase.auth().onAuthStateChanged(u=>{if(u)enter({uid:u.uid,email:u.email,name:u.displayName});else{U=null;render()}})},()=>{FB=null;DB=null;local()});else local();
+</script>
+<script>if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('service-worker.js').catch(()=>{}))</script>
+</body>
+</html>
